@@ -85,6 +85,20 @@ function createServer() {
       return send(res, 200, out);
     }
 
+    // ---- body JSON object (create/put/patch) - đọc TRƯỚC khi kiểm id, giống bản 5 tầng ----
+    let body;
+    if (route === 'create' || route === 'put' || route === 'patch') {
+      const raw = await readBody(req);
+      try {
+        body = JSON.parse(raw);
+      } catch {
+        return send(res, 400, { error: 'JSON không hợp lệ' });
+      }
+      if (body === null || typeof body !== 'object' || Array.isArray(body)) {
+        return send(res, 400, { error: 'Body phải là JSON object' });
+      }
+    }
+
     // ---- id-based: id sai định dạng => 404 ----
     let id = null;
     if (route !== 'create') {
@@ -100,18 +114,6 @@ function createServer() {
       if (idx === -1) return send(res, 404, { error: 'Product not found' });
       items.splice(idx, 1);
       return send(res, 204);
-    }
-
-    // ---- các route còn lại cần body JSON object ----
-    const raw = await readBody(req);
-    let body;
-    try {
-      body = JSON.parse(raw);
-    } catch {
-      return send(res, 400, { error: 'JSON không hợp lệ' });
-    }
-    if (body === null || typeof body !== 'object' || Array.isArray(body)) {
-      return send(res, 400, { error: 'Body phải là JSON object' });
     }
 
     if (route === 'create' || route === 'put') {
