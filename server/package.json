@@ -1,0 +1,29 @@
+{
+  "name": "products-server",
+  "version": "1.0.0",
+  "description": "SET2026 - Products API bản Express 5 (thay router/parseJsonBody/sendJson tự viết bằng Express)",
+  "main": "src/server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node ../database/seed.js",
+    "test": "node scripts/run-tests.js file mongo",
+    "test:file": "node scripts/run-tests.js file",
+    "test:mongo": "node scripts/run-tests.js mongo"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "mongodb": "^7.9.1"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}
