@@ -1,0 +1,22 @@
+{
+  "name": "products-api",
+  "version": "1.0.0",
+  "description": "SET2026 - Products API (Node thuần, 5 tầng) - chủ đề sưu tầm mô hình: Gundam / Yu-Gi-Oh / Pokémon",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "start:baseline": "node baseline/server.js",
+    "seed": "node scripts/seed.js",
+    "test": "node scripts/run-tests.js baseline file",
+    "test:baseline": "node scripts/run-tests.js baseline",
+    "test:file": "node scripts/run-tests.js file",
+    "test:mongo": "node scripts/run-tests.js mongo"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^18.0.10"
+  }
+}
